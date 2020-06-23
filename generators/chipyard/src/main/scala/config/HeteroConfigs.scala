@@ -16,6 +16,7 @@ class LargeBoomAndRocketConfig extends Config(
   new chipyard.config.WithBootROM ++                             // use default bootrom
   new chipyard.config.WithUART ++                                // add a UART
   new chipyard.config.WithL2TLBs(1024) ++                        // use L2 TLBs
+  new chipyard.config.WithNoSubsystemDrivenClocks ++             // don't drive the subsystem clocks from within the subsystem
   new boom.common.WithNLargeBooms(1) ++                          // single-core boom
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++           // no top-level MMIO master port (overrides default set in rocketchip)
   new freechips.rocketchip.subsystem.WithNoSlavePort ++          // no top-level MMIO slave port (overrides default set in rocketchip)
@@ -36,6 +37,7 @@ class HwachaLargeBoomAndHwachaRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new hwacha.DefaultHwachaConfig ++                      // add hwacha to all harts
   new boom.common.WithNLargeBooms(1) ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
@@ -60,6 +62,7 @@ class LargeBoomAndHwachaRocketConfig extends Config(
   new chipyard.config.WithMultiRoCC ++                                  // support heterogeneous rocc
   new chipyard.config.WithMultiRoCCHwacha(1) ++                         // put hwacha on hart-1 (rocket)
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new boom.common.WithNLargeBooms(1) ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
@@ -82,6 +85,7 @@ class DualLargeBoomAndDualRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new boom.common.WithNLargeBooms(2) ++                   // 2 boom cores
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
@@ -102,6 +106,7 @@ class LargeBoomAndRocketWithControlCoreConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNSmallCores(1) ++ // Add a small control core
   new boom.common.WithNLargeBooms(1) ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++

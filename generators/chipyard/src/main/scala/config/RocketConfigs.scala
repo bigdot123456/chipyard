@@ -16,6 +16,7 @@ class RocketConfig extends Config(
   new chipyard.config.WithBootROM ++                             // use default bootrom
   new chipyard.config.WithUART ++                                // add a UART
   new chipyard.config.WithL2TLBs(1024) ++                        // use L2 TLBs
+  new chipyard.config.WithNoSubsystemDrivenClocks ++             // don't drive the subsystem's clocks from within the subsystem
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++           // no top-level MMIO master port (overrides default set in rocketchip)
   new freechips.rocketchip.subsystem.WithNoSlavePort ++          // no top-level MMIO slave port (overrides default set in rocketchip)
   new freechips.rocketchip.subsystem.WithInclusiveCache ++       // use Sifive L2 cache
@@ -34,6 +35,7 @@ class HwachaRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new hwacha.DefaultHwachaConfig ++                        // use Hwacha vector accelerator
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
@@ -54,6 +56,7 @@ class GemminiRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new gemmini.DefaultGemminiConfig ++                        // use Gemmini systolic array GEMM accelerator
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
@@ -74,6 +77,7 @@ class RoccRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
@@ -94,6 +98,7 @@ class jtagRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithJtagDTM ++        // sets DTM communication interface to JTAG
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
@@ -114,6 +119,7 @@ class dmiRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
@@ -134,6 +140,7 @@ class GCDTLRocketConfig extends Config(
   new chipyard.config.WithUART ++
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new chipyard.example.WithGCD(useAXI4=false, useBlackBox=false) ++          // Use GCD Chisel, connect Tilelink
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
@@ -155,6 +162,7 @@ class GCDAXI4BlackBoxRocketConfig extends Config(
   new chipyard.config.WithUART ++
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new chipyard.example.WithGCD(useAXI4=true, useBlackBox=true) ++          // Use GCD blackboxed verilog, connect by AXI4->Tilelink
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
@@ -177,6 +185,7 @@ class LargeSPIFlashROMRocketConfig extends Config(
   new chipyard.config.WithUART ++
   new chipyard.config.WithSPIFlash ++                       // add the SPI flash controller
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
@@ -197,6 +206,7 @@ class SmallSPIFlashRocketConfig extends Config(
   new chipyard.config.WithUART ++
   new chipyard.config.WithSPIFlash(0x100000) ++             // add the SPI flash controller (1 MiB)
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
@@ -215,6 +225,7 @@ class SimAXIRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
@@ -235,6 +246,7 @@ class SimBlockDeviceRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
@@ -255,6 +267,7 @@ class BlockDeviceModelRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
@@ -276,6 +289,7 @@ class GPIORocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
@@ -295,6 +309,7 @@ class QuadRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
@@ -312,6 +327,7 @@ class RV32RocketConfig extends Config(
   new testchipip.WithTSI ++
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
@@ -331,6 +347,7 @@ class GB1MemoryRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithExtMemSize((1<<30) * 1L) ++ // use 1GB simulated external memory
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
@@ -351,6 +368,7 @@ class Sha3RocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new sha3.WithSha3Accel ++                                // add SHA3 rocc accelerator
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
@@ -372,6 +390,7 @@ class InitZeroRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new chipyard.example.WithInitZero(0x88000000L, 0x1000L) ++                // add InitZero
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
@@ -394,6 +413,7 @@ class LoopbackNICRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
@@ -411,6 +431,7 @@ class L1ScratchpadSmallRocketConfig extends Config(
   new testchipip.WithTSI ++
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNMemoryChannels(0) ++ // remove offchip mem port
   new freechips.rocketchip.subsystem.WithNBanks(0) ++
   new freechips.rocketchip.subsystem.WithNoMemPort ++
@@ -434,6 +455,7 @@ class MbusScratchpadRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMemPort ++       // remove offchip mem port
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
@@ -455,6 +477,7 @@ class RingSystemBusRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new testchipip.WithRingSystemBus ++ // Ring-topology system bus
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
@@ -476,6 +499,7 @@ class StreamingPassthroughRocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
@@ -496,6 +520,7 @@ class StreamingFIRRocketConfig extends Config (
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
@@ -515,6 +540,7 @@ class SmallNVDLARocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new nvidia.blocks.dla.WithNVDLA("small") ++ // add a small NVDLA
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
@@ -534,6 +560,7 @@ class LargeNVDLARocketConfig extends Config(
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
   new chipyard.config.WithL2TLBs(1024) ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new nvidia.blocks.dla.WithNVDLA("large", true) ++ // add a large NVDLA with synth. rams
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++

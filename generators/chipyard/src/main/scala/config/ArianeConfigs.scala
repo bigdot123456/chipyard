@@ -17,6 +17,7 @@ class ArianeConfig extends Config(
   new testchipip.WithTSI ++                                      // use testchipip serial offchip link
   new chipyard.config.WithBootROM ++                             // use default bootrom
   new chipyard.config.WithUART ++                                // add a UART
+  new chipyard.config.WithNoSubsystemDrivenClocks ++             // don't drive the subsystem clocks from within the subsystem
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++           // no top-level MMIO master port (overrides default set in rocketchip)
   new freechips.rocketchip.subsystem.WithNoSlavePort ++          // no top-level MMIO slave port (overrides default set in rocketchip)
   new freechips.rocketchip.subsystem.WithInclusiveCache ++       // use Sifive L2 cache
@@ -33,6 +34,7 @@ class dmiArianeConfig extends Config(
   new chipyard.iobinders.WithSimDebug ++               // add SimDebug and use it to drive simulation
   new chipyard.config.WithBootROM ++
   new chipyard.config.WithUART ++
+  new chipyard.config.WithNoSubsystemDrivenClocks ++
   new freechips.rocketchip.subsystem.WithNoMMIOPort ++
   new freechips.rocketchip.subsystem.WithNoSlavePort ++
   new freechips.rocketchip.subsystem.WithInclusiveCache ++

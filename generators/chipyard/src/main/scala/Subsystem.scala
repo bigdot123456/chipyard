@@ -8,6 +8,7 @@ package chipyard
 import chisel3._
 import chisel3.internal.sourceinfo.{SourceInfo}
 
+import freechips.rocketchip.prci._
 import freechips.rocketchip.config.{Field, Parameters}
 import freechips.rocketchip.devices.tilelink._
 import freechips.rocketchip.devices.debug.{HasPeripheryDebug, HasPeripheryDebugModuleImp}
@@ -33,6 +34,14 @@ class ChipyardSubsystem(implicit p: Parameters) extends BaseSubsystem
     case r: RocketTile => r.module.core.rocketImpl.coreMonitorBundle
     case b: BoomTile => b.module.core.coreMonitorBundle
   }.toList
+
+  // TODO: In the future, RC tiles may extend ClockDomain. When that happens,
+  // we won't need to manually create this clock node and connect it to the
+  // tiles' implicit clocks
+  val tilesClockSinkNode = ClockSinkNode(List(ClockSinkParameters()))
+  tilesClockSinkNode := ClockGroup()(p, ValName("chipyard_tiles")) := asyncClockGroupsNode
+  def tilesClockBundle = tilesClockSinkNode.in.head._1
+
   override lazy val module = new ChipyardSubsystemModuleImp(this)
 }
 
@@ -40,11 +49,13 @@ class ChipyardSubsystemModuleImp[+L <: ChipyardSubsystem](_outer: L) extends Bas
   with HasResetVectorWire
   with HasTilesModuleImp
 {
-
   for (i <- 0 until outer.tiles.size) {
     val wire = tile_inputs(i)
     wire.hartid := outer.hartIdList(i).U
     wire.reset_vector := global_reset_vector
+
+    outer.tiles(i).module.clock := outer.tilesClockBundle.clock
+    outer.tiles(i).module.reset := outer.tilesClockBundle.reset
   }
 
   // create file with core params
